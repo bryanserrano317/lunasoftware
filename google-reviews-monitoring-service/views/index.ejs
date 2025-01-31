@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Place Details</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCXmhz4F-nL7jWwC4Je6eNqbVR5xDodqI&libraries=places"></script>
+</head>
+<body>
+
+<table id="placeTable" border="1" style="display: none;">
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Total Ratings</th>
+        <th>Rating Count</th>
+        <th>Rating Count Growth 2023 - 2024</th>
+        <th>Link</th>
+    </tr>
+</table>
+
+<div id="lastUpdated" style="display: block;"></div>
+
+<script>
+
+    async function fetchPlaceDetailsAndPopulateTable() {
+        const placeIds = ['ChIJpyBOewoK2YgR6iADyTNZLVI', 'ChIJWd9RewoK2YgRO362a70U8i4', 'ChIJtdaZ6sMH2YgRLYe6mH6STms', 'ChIJFaEtgAoK2YgRwjizKfmRAX4', 'ChIJ53jkRMEH2YgRHOwzZBIMqEc', 'ChIJC7MnR3gH2YgR5PntlG5Dam0'];
+        const placeUrls = ['https://g.co/kgs/QfzJCdt', 'https://maps.app.goo.gl/TSvTRcCVxdAjqryaA', 'https://maps.app.goo.gl/2GLaFrynY3Cj2ctG6', 'https://maps.app.goo.gl/wYEQUEp7s6rtBsaE6','https://maps.app.goo.gl/ZaeeL4ghZMWg2JWD9', 'https://maps.app.goo.gl/33PJLHxKcnRpwECk8']
+        const yearStartRating  = [4, 56, 0, 6, 18, 0];
+        const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+        const updateTime = new Date().toLocaleString(); // Get current time
+
+        document.getElementById('lastUpdated').textContent = 'Last Updated: ' + updateTime;
+
+        await placeIds.forEach((placeId, index) => {
+            placesService.getDetails({ placeId: placeId }, (place, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    const name = place.name || 'N/A';
+                    const address = place.formatted_address || 'N/A';
+                    const totalRatings = place.user_ratings_total || 0;
+                    const rating = place.rating || 0;
+                
+
+                    const table = document.getElementById('placeTable');
+                    const row = table.insertRow(-1);
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+                    const cell5 = row.insertCell(4);
+                    const cell6 = row.insertCell(5);
+
+                    cell1.innerHTML = name;
+                    cell2.innerHTML = address;
+                    cell3.innerHTML = totalRatings;
+                    cell4.innerHTML = rating;
+                    cell5.innerHTML = Math.floor(((totalRatings - yearStartRating[index]) / yearStartRating[index]) * 100) + "%" ;
+                    cell6.innerHTML = `<a href="${placeUrls[index]}" target="_blank">${placeUrls[index]}</a>`;
+                } else {
+                    console.error('Failed to fetch place details');
+                }
+            });
+        });
+        document.getElementById('placeTable').style.display = 'table';
+    }
+    fetchPlaceDetailsAndPopulateTable()
+</script>
+<a href="/internal/home">Return Home</a>
+</body>
+</html>

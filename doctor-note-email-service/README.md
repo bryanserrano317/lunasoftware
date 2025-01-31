@@ -71,4 +71,4 @@ This script handles Google API authentication and service creation.
 ---
 
 ## License
-This project is licensed under [Your License Here].
+This project is licensed under MIT License.

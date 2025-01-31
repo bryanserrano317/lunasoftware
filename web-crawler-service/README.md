@@ -54,7 +54,7 @@ This project is a **Scrapy-based web crawler** designed to scrape content from w
 ### `crawling_spider.py`
 - Implements the main Scrapy spider for crawling.
 - Uses `CrawlSpider` with `LinkExtractor` to follow links.
-- Targets `leetcode.com` for scraping.
+- Targets a website for scraping.
 - Handles HTTP status codes (404, 403, 302)【crawling_spider.py】.
 
 #### Key Components
@@ -84,4 +84,4 @@ This project is a **Scrapy-based web crawler** designed to scrape content from w
 ---
 
 ## License
-This project is licensed under [Your License Here].
+This project is licensed under MIT License.

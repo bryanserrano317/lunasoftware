@@ -49,4 +49,4 @@ This project consists of an Express.js-based backend and EJS-based frontend temp
 ---
 
 ## License
-This project is licensed under [Your License Here].
+This project is licensed under MIT License.

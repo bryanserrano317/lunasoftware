@@ -58,8 +58,8 @@ This project is a **Scrapy-based web crawler** designed to scrape content from w
 - Handles HTTP status codes (404, 403, 302)【crawling_spider.py】.
 
 #### Key Components
-- **`allowed_domains = ['leetcode.com']`**: Limits the crawl to specific domains.
-- **`start_urls = ["https://leetcode.com/problemset/"]`**: Entry point for scraping.
+- **`allowed_domains = ['awebsite.com']`**: Limits the crawl to specific domains.
+- **`start_urls = ["awebsite.com/suburl"]`**: Entry point for scraping.
 - **`parse_item(response)`**: Extracts page data.
 
 #### Dependencies

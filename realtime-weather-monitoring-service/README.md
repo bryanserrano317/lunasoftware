@@ -77,4 +77,4 @@ This project consists of an Apache Airflow DAG for fetching weather data, a shel
 ---
 
 ## License
-This project is licensed under [Your License Here].
+This project is licensed under MIT License.
